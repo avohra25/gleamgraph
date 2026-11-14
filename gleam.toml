@@ -1,0 +1,12 @@
+name = "gleamgraph"
+version = "0.1.0"
+description = "Graph algorithms in pure Gleam: traversal, shortest paths, connectivity, spanning trees, flows and matching"
+licences = ["MIT"]
+repository = { type = "github", user = "avohra25", repo = "gleamgraph" }
+gleam = ">= 1.11.0"
+
+[dependencies]
+gleam_stdlib = ">= 1.0.0 and < 2.0.0"
+
+[dev_dependencies]
+gleeunit = ">= 1.0.0 and < 2.0.0"
