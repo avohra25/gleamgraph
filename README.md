@@ -12,9 +12,12 @@ obviously-correct reference on hundreds of seeded random graphs.
 | `gleamgraph/graph` | Immutable directed/undirected weighted multigraph over `Int` nodes |
 | `gleamgraph/heap` | Persistent pairing heap (min-priority queue) |
 | `gleamgraph/traverse` | BFS (order, layers, hop distances), DFS preorder, reachability, topological sort with cycle witness |
+| `gleamgraph/disjoint` | Persistent union-find with union by rank and path compression |
+| `gleamgraph/components` | Connected components, Tarjan SCC, condensation DAG, bridges, articulation points |
+| `gleamgraph/mst` | Kruskal and Prim minimum spanning forests |
 | `gleamgraph/shortest` | Dijkstra, Bellman-Ford with negative-cycle witnesses, DAG shortest paths, Floyd-Warshall, A* |
 
-More algorithms (connectivity, spanning trees, flows) are on the way.
+Max flow and bipartite matching are on the way.
 
 ## Quick start
 
