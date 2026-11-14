@@ -12,10 +12,9 @@ obviously-correct reference on hundreds of seeded random graphs.
 | `gleamgraph/graph` | Immutable directed/undirected weighted multigraph over `Int` nodes |
 | `gleamgraph/heap` | Persistent pairing heap (min-priority queue) |
 | `gleamgraph/traverse` | BFS (order, layers, hop distances), DFS preorder, reachability, topological sort with cycle witness |
-| `gleamgraph/shortest` | Dijkstra with path reconstruction |
+| `gleamgraph/shortest` | Dijkstra, Bellman-Ford with negative-cycle witnesses, DAG shortest paths, Floyd-Warshall, A* |
 
-More algorithms (negative weights, connectivity, spanning trees, flows) are
-on the way.
+More algorithms (connectivity, spanning trees, flows) are on the way.
 
 ## Quick start
 
@@ -36,6 +35,22 @@ traverse.bfs(g, 1)                // [1, 2, 3]
 traverse.topological_sort(g)      // Ok([1, 3, 2])
 shortest.shortest_path(g, 1, 2)   // Ok(Ok(#(8, [1, 3, 2])))
 ```
+
+## Negative weights
+
+`shortest.bellman_ford` handles negative edges and, when a negative cycle is
+reachable, returns `Error(NegativeCycle(cycle))` with an actual cycle you
+can inspect:
+
+```gleam
+let g = graph.from_edges(graph.Directed, [#(0, 1, 1), #(1, 2, -1), #(2, 3, -1), #(3, 1, -1)])
+shortest.bellman_ford(g, 0)   // Error(NegativeCycle([1, 2, 3]))
+```
+
+`floyd_warshall` returns all-pairs distances as a `Dict(#(Int, Int), Int)`
+and reports negative cycles the same way. `astar` takes any admissible
+heuristic and re-expands nodes when needed, so it stays optimal even when
+the heuristic is not consistent.
 
 ## License
 
